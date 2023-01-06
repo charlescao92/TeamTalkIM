@@ -62,18 +62,28 @@ int CacheConn::Init()
 		} else {
 			log("redisConnect failed");
 		}
-
 		return 1;
 	}
 
+	if (m_pCachePool->GetServerAuth()) {
+ 		redisReply *reply = (redisReply *)redisCommand(m_pContext, "AUTH %s", m_pCachePool->GetServerAuth());
+		if (reply && (reply->type == REDIS_REPLY_STATUS) && (strncmp(reply->str, "OK", 2) == 0)) {
+    		freeReplyObject(reply);
+  		} else {
+			log_error("cache db auth failed, auth:%s ", m_pCachePool->GetServerAuth());
+			return 2;
+		}
+	}
+	
 	redisReply* reply = (redisReply *)redisCommand(m_pContext, "SELECT %d", m_pCachePool->GetDBNum());
 	if (reply && (reply->type == REDIS_REPLY_STATUS) && (strncmp(reply->str, "OK", 2) == 0)) {
 		freeReplyObject(reply);
-		return 0;
 	} else {
-		log("select cache db failed");
-		return 2;
+		log_error("select cache db failed!");
+		return 3;
 	}
+
+	return 0;
 }
 
 
@@ -559,11 +569,14 @@ bool CacheConn::lrange(string key, long start, long end, list<string>& ret_value
 }
 
 ///////////////
-CachePool::CachePool(const char* pool_name, const char* server_ip, int server_port, int db_num, int max_conn_cnt)
+CachePool::CachePool(const char* pool_name, const char* server_ip, int server_port, const char* auth, int db_num, int max_conn_cnt)
 {
 	m_pool_name = pool_name;
 	m_server_ip = server_ip;
 	m_server_port = server_port;
+	if (auth) {
+		m_server_auth = auth;
+	}
 	m_db_num = db_num;
 	m_max_conn_cnt = max_conn_cnt;
 	m_cur_conn_cnt = MIN_CACHE_CONN_CNT;
@@ -676,7 +689,6 @@ int CacheManager::Init()
 {
 	CConfigFileReader config_file("dbproxyserver.conf");
 
-    //CacheInstances=unread,group_set,token,sync,group_member
 	char* cache_instances = config_file.GetConfigName("CacheInstances");
 	if (!cache_instances) {
 		log("not configure CacheIntance");
@@ -685,30 +697,32 @@ int CacheManager::Init()
 
 	char host[64];
 	char port[64];
+	char auth[64];
 	char db[64];
     char maxconncnt[64];
 	CStrExplode instances_name(cache_instances, ',');
 	for (uint32_t i = 0; i < instances_name.GetItemCnt(); i++) {
 		char* pool_name = instances_name.GetItem(i);
-		//printf("%s", pool_name);
 		snprintf(host, 64, "%s_host", pool_name);
 		snprintf(port, 64, "%s_port", pool_name);
+		snprintf(auth, 64, "%s_auth", pool_name);
 		snprintf(db, 64, "%s_db", pool_name);
         snprintf(maxconncnt, 64, "%s_maxconncnt", pool_name);
 
-		char* cache_host = config_file.GetConfigName(host);
+		char* str_cache_host = config_file.GetConfigName(host);
 		char* str_cache_port = config_file.GetConfigName(port);
+		char* str_cache_auth = config_file.GetConfigName(auth);
 		char* str_cache_db = config_file.GetConfigName(db);
         char* str_max_conn_cnt = config_file.GetConfigName(maxconncnt);
-		if (!cache_host || !str_cache_port || !str_cache_db || !str_max_conn_cnt) {
-			log("not configure cache instance: %s", pool_name);
+		if (!str_cache_host || !str_cache_port || !str_cache_db || !str_max_conn_cnt) {
+			log("not configure cache instance, pool_name:%s", pool_name);
 			return 2;
 		}
 
-		CachePool* pCachePool = new CachePool(pool_name, cache_host, atoi(str_cache_port),
-				atoi(str_cache_db), atoi(str_max_conn_cnt));
+		CachePool* pCachePool = new CachePool(pool_name, str_cache_host, atoi(str_cache_port),
+				str_cache_auth, atoi(str_cache_db), atoi(str_max_conn_cnt));
 		if (pCachePool->Init()) {
-			log("Init cache pool failed");
+			log("Init cache pool failed, pool_name:%s", pool_name);
 			return 3;
 		}
 

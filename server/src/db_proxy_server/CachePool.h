@@ -64,7 +64,7 @@ private:
 
 class CachePool {
 public:
-	CachePool(const char* pool_name, const char* server_ip, int server_port, int db_num, int max_conn_cnt);
+	CachePool(const char* pool_name, const char* server_ip, int server_port, const char* auth, int db_num, int max_conn_cnt);
 	virtual ~CachePool();
 
 	int Init();
@@ -74,16 +74,23 @@ public:
 
 	const char* GetPoolName() { return m_pool_name.c_str(); }
 	const char* GetServerIP() { return m_server_ip.c_str(); }
+	const char* GetServerAuth() { 
+		if (!m_server_auth.empty()) {
+			return m_server_auth.c_str();
+		}
+		return NULL; 
+	}
 	int GetServerPort() { return m_server_port; }
 	int GetDBNum() { return m_db_num; }
 private:
 	string 		m_pool_name;
 	string		m_server_ip;
-	int			m_server_port;
-	int			m_db_num;
+	int			m_server_port = 6379;
+	string		m_server_auth;
+	int			m_db_num = 1;
 
-	int			m_cur_conn_cnt;
-	int 		m_max_conn_cnt;
+	int			m_cur_conn_cnt = 1;
+	int 		m_max_conn_cnt = 15;
 	list<CacheConn*>	m_free_list;
 	CThreadNotify		m_free_notify;
 };

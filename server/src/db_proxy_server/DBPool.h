@@ -107,7 +107,7 @@ private:
 	string 		m_db_name;
 	int			m_db_cur_conn_cnt;
 	int 		m_db_max_conn_cnt;
-	list<CDBConn*>	m_free_list;        //实际保存mysql连接的容器
+	list<CDBConn*>	m_free_list;
 	CThreadNotify	m_free_notify;
 };
 
@@ -127,7 +127,7 @@ private:
 
 private:
 	static CDBManager*		s_db_manager;
-	map<string, CDBPool*>	m_dbpool_map;       //存储mysql连接池，每个池子里面有多个mysql连接对象
+	map<string, CDBPool*>	m_dbpool_map;
 };
 
 #endif /* DBPOOL_H_ */

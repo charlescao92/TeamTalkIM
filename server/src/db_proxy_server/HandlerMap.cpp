@@ -62,7 +62,6 @@ CHandlerMap* CHandlerMap::getInstance()
  */
 void CHandlerMap::Init()
 {
-    //DB_PROXY是命名空间，不是类名
 	// Login validate
 	m_handler_map.insert(make_pair(uint32_t(CID_OTHER_VALIDATE_REQ), DB_PROXY::doLogin));
     m_handler_map.insert(make_pair(uint32_t(CID_LOGIN_REQ_PUSH_SHIELD), DB_PROXY::doPushShield));
