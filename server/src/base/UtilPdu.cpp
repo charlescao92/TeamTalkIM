@@ -56,6 +56,8 @@ uint32_t CSimpleBuffer::Write(void* buf, uint32_t len)
 
 uint32_t CSimpleBuffer::Read(void* buf, uint32_t len)
 {
+    if (0 == len) 
+        return len;
 	if (len > m_write_offset)
 		len = m_write_offset;
 

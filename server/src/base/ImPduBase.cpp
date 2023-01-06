@@ -166,7 +166,7 @@ void CImPdu::SetPBMsg(const google::protobuf::MessageLite* msg)
     //ALLOC_FAIL_ASSERT(szData)
     if (!msg->SerializeToArray(szData, msg_size))
     {
-        log("pb msg miss required fields.");
+        log_error("pb msg miss required fields.");
     }
     
     m_buf.Write(szData, msg_size);

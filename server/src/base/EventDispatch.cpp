@@ -16,13 +16,13 @@ CEventDispatch::CEventDispatch()
 	m_kqfd = kqueue();
 	if (m_kqfd == -1)
 	{
-		log("kqueue failed");
+		log_error("kqueue failed");
 	}
 #else
 	m_epfd = epoll_create(1024);
 	if (m_epfd == -1)
 	{
-		log("epoll_create failed");
+		log_error("epoll_create failed");
 	}
 #endif
 }
@@ -192,7 +192,7 @@ void CEventDispatch::StartDispatch(uint32_t wait_timeout)
 
 		if (nfds == SOCKET_ERROR)
 		{
-			log("select failed, error code: %d", GetLastError());
+			log_error("select failed, error code: %d", GetLastError());
 			Sleep(MIN_TIMER_DURATION);
 			continue;			// select again
 		}
@@ -339,7 +339,7 @@ void CEventDispatch::AddEvent(SOCKET fd, uint8_t socket_event)
 	ev.data.fd = fd;
 	if (epoll_ctl(m_epfd, EPOLL_CTL_ADD, fd, &ev) != 0)
 	{
-		log("epoll_ctl() failed, errno=%d", errno);
+		log_error("epoll_ctl() failed, errno=%d", errno);
 	}
 }
 
@@ -347,7 +347,7 @@ void CEventDispatch::RemoveEvent(SOCKET fd, uint8_t socket_event)
 {
 	if (epoll_ctl(m_epfd, EPOLL_CTL_DEL, fd, NULL) != 0)
 	{
-		log("epoll_ctl failed, errno=%d", errno);
+		log_error("epoll_ctl failed, errno=%d", errno);
 	}
 }
 

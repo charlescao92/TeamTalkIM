@@ -51,7 +51,7 @@ int CBaseSocket::Listen(const char* server_ip, uint16_t port, callback_t callbac
 	m_socket = socket(AF_INET, SOCK_STREAM, 0);
 	if (m_socket == INVALID_SOCKET)
 	{
-		printf("socket failed, err_code=%d\n", _GetErrorCode());
+		log_error("socket failed, err_code=%d, server_ip=%s, port=%u", _GetErrorCode(), server_ip, port);
 		return NETLIB_ERROR;
 	}
 
@@ -63,7 +63,7 @@ int CBaseSocket::Listen(const char* server_ip, uint16_t port, callback_t callbac
     int ret = ::bind(m_socket, (sockaddr*)&serv_addr, sizeof(serv_addr));
 	if (ret == SOCKET_ERROR)
 	{
-		log("bind failed, err_code=%d", _GetErrorCode());
+        log_error("bind failed, err_code=%d, server_ip=%s, port=%u", _GetErrorCode(), server_ip, port);
 		closesocket(m_socket);
 		return NETLIB_ERROR;
 	}
@@ -71,14 +71,14 @@ int CBaseSocket::Listen(const char* server_ip, uint16_t port, callback_t callbac
 	ret = listen(m_socket, 64);
 	if (ret == SOCKET_ERROR)
 	{
-		log("listen failed, err_code=%d", _GetErrorCode());
+        log_error("listen failed, err_code=%d, server_ip=%s, port=%u", _GetErrorCode(), server_ip, port);
 		closesocket(m_socket);
 		return NETLIB_ERROR;
 	}
 
 	m_state = SOCKET_STATE_LISTENING;
 
-	log("CBaseSocket::Listen on %s:%d", server_ip, port);
+	log_debug("CBaseSocket::Listen on %s:%d", server_ip, port);
 
 	AddBaseSocket(this);
 	CEventDispatch::Instance()->AddEvent(m_socket, SOCKET_READ | SOCKET_EXCEP);
@@ -87,7 +87,7 @@ int CBaseSocket::Listen(const char* server_ip, uint16_t port, callback_t callbac
 
 net_handle_t CBaseSocket::Connect(const char* server_ip, uint16_t port, callback_t callback, void* callback_data)
 {
-	log("CBaseSocket::Connect, server_ip=%s, port=%d", server_ip, port);
+	log_debug("CBaseSocket::Connect, server_ip=%s, port=%d", server_ip, port);
 
 	m_remote_ip = server_ip;
 	m_remote_port = port;
@@ -97,7 +97,7 @@ net_handle_t CBaseSocket::Connect(const char* server_ip, uint16_t port, callback
 	m_socket = socket(AF_INET, SOCK_STREAM, 0);
 	if (m_socket == INVALID_SOCKET)
 	{
-		log("socket failed, err_code=%d", _GetErrorCode());
+        log_error("socket failed, err_code=%d, server_ip=%s, port=%u", _GetErrorCode(), server_ip, port);
 		return NETLIB_INVALID_HANDLE;
 	}
 
@@ -108,7 +108,7 @@ net_handle_t CBaseSocket::Connect(const char* server_ip, uint16_t port, callback
 	int ret = connect(m_socket, (sockaddr*)&serv_addr, sizeof(serv_addr));
 	if ( (ret == SOCKET_ERROR) && (!_IsBlock(_GetErrorCode())) )
 	{	
-		log("connect failed, err_code=%d", _GetErrorCode());
+        log_error("connect failed, err_code=%d, server_ip=%s, port=%u", _GetErrorCode(), server_ip, port);
 		closesocket(m_socket);
 		return NETLIB_INVALID_HANDLE;
 	}
@@ -138,7 +138,7 @@ int CBaseSocket::Send(void* buf, int len)
 		}
 		else
 		{
-			log("!!!send failed, error code: %d", err_code);
+            log_error("send failed, err_code=%d, len=%d", err_code, len);
 		}
 	}
 
@@ -169,7 +169,8 @@ void CBaseSocket::OnRead()
 	else
 	{
 		u_long avail = 0;
-		if ( (ioctlsocket(m_socket, FIONREAD, &avail) == SOCKET_ERROR) || (avail == 0) )
+        int ret = ioctlsocket(m_socket, FIONREAD, &avail);
+		if ( (SOCKET_ERROR == ret) || (avail == 0) )
 		{
 			m_callback(m_callback_data, NETLIB_MSG_CLOSE, (net_handle_t)m_socket, NULL);
 		}
@@ -219,26 +220,26 @@ void CBaseSocket::SetSendBufSize(uint32_t send_size)
 {
 	int ret = setsockopt(m_socket, SOL_SOCKET, SO_SNDBUF, &send_size, 4);
 	if (ret == SOCKET_ERROR) {
-		log("set SO_SNDBUF failed for fd=%d", m_socket);
+        log_error("set SO_SNDBUF failed for fd=%d", m_socket);
 	}
 
 	socklen_t len = 4;
 	int size = 0;
 	getsockopt(m_socket, SOL_SOCKET, SO_SNDBUF, &size, &len);
-	log("socket=%d send_buf_size=%d", m_socket, size);
+	log_debug("socket=%d send_buf_size=%d", m_socket, size);
 }
 
 void CBaseSocket::SetRecvBufSize(uint32_t recv_size)
 {
 	int ret = setsockopt(m_socket, SOL_SOCKET, SO_RCVBUF, &recv_size, 4);
 	if (ret == SOCKET_ERROR) {
-		log("set SO_RCVBUF failed for fd=%d", m_socket);
+        log_error("set SO_RCVBUF failed for fd=%d", m_socket);
 	}
 
 	socklen_t len = 4;
 	int size = 0;
 	getsockopt(m_socket, SOL_SOCKET, SO_RCVBUF, &size, &len);
-	log("socket=%d recv_buf_size=%d", m_socket, size);
+	log_debug("socket=%d recv_buf_size=%d", m_socket, size);
 }
 
 int CBaseSocket::_GetErrorCode()
@@ -269,7 +270,7 @@ void CBaseSocket::_SetNonblock(SOCKET fd)
 #endif
 	if (ret == SOCKET_ERROR)
 	{
-		log("_SetNonblock failed, err_code=%d", _GetErrorCode());
+        log_error("_SetNonblock failed, err_code=%d, fd=%d", _GetErrorCode(), fd);
 	}
 }
 
@@ -279,7 +280,7 @@ void CBaseSocket::_SetReuseAddr(SOCKET fd)
 	int ret = setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, (char*)&reuse, sizeof(reuse));
 	if (ret == SOCKET_ERROR)
 	{
-		log("_SetReuseAddr failed, err_code=%d", _GetErrorCode());
+        log_error("_SetReuseAddr failed, err_code=%d, fd=%d", _GetErrorCode(), fd);
 	}
 }
 
@@ -289,7 +290,7 @@ void CBaseSocket::_SetNoDelay(SOCKET fd)
 	int ret = setsockopt(fd, IPPROTO_TCP, TCP_NODELAY, (char*)&nodelay, sizeof(nodelay));
 	if (ret == SOCKET_ERROR)
 	{
-		log("_SetNoDelay failed, err_code=%d", _GetErrorCode());
+        log_error("_SetNoDelay failed, err_code=%d, fd=%d", _GetErrorCode(), fd);
 	}
 }
 
@@ -304,7 +305,7 @@ void CBaseSocket::_SetAddr(const char* ip, const uint16_t port, sockaddr_in* pAd
 		hostent* host = gethostbyname(ip);
 		if (host == NULL)
 		{
-			log("gethostbyname failed, ip=%s", ip);
+            log_error("gethostbyname failed, ip=%s, port=%u", ip, port);
 			return;
 		}
 
@@ -326,7 +327,7 @@ void CBaseSocket::_AcceptNewSocket()
 
 		snprintf(ip_str, sizeof(ip_str), "%d.%d.%d.%d", ip >> 24, (ip >> 16) & 0xFF, (ip >> 8) & 0xFF, ip & 0xFF);
 
-		log("AcceptNewSocket, socket=%d from %s:%d\n", fd, ip_str, port);
+		log_debug("AcceptNewSocket, socket=%d from %s:%d\n", fd, ip_str, port);
 
 		pSocket->SetSocket(fd);
 		pSocket->SetCallback(m_callback);

@@ -144,7 +144,7 @@ string CHttpClient::UploadByteFile(const string &strUrl, void* pData, int nSize)
     curl_easy_cleanup(curl);
     
     if (CURLE_OK != res) {
-        log("curl_easy_perform failed, res=%d", res);
+        log_error("curl_easy_perform failed, res=%d", res);
         return "";
     }
     
@@ -153,18 +153,18 @@ string CHttpClient::UploadByteFile(const string &strUrl, void* pData, int nSize)
     Json::Value value;
     
     if (!reader.parse(strResp, value)) {
-        log("json parse failed: %s", strResp.c_str());
+        log_error("json parse failed: %s", strResp.c_str());
         return "";
     }
     
     if (value["error_code"].isNull()) {
-        log("no code in response %s", strResp.c_str());
+        log_error("no code in response %s", strResp.c_str());
         return "";
     }
     uint32_t nRet = value["error_code"].asUInt();
     if(nRet != 0)
     {
-        log("upload faile:%u", nRet);
+        log_error("upload faile:%u", nRet);
         return "";
     }
     return value["url"].asString();
@@ -187,7 +187,7 @@ bool CHttpClient::DownloadByteFile(const string &url, AudioMsgInfo* pAudioMsg)
     int retcode = 0;
     res = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE , &retcode);
     if(CURLE_OK != res || retcode != 200) {
-        log("curl_easy_perform failed, res=%d, ret=%u", res, retcode);
+        log_error("curl_easy_perform failed, res=%d, ret=%u", res, retcode);
     }
     double nLen = 0;
     res = curl_easy_getinfo(curl, CURLINFO_CONTENT_LENGTH_DOWNLOAD , &nLen);

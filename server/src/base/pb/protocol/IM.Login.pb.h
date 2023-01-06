@@ -49,6 +49,8 @@ class IMPushShieldReq;
 class IMPushShieldRsp;
 class IMQueryPushShieldReq;
 class IMQueryPushShieldRsp;
+class IMRegistReq;
+class IMRegistRes;
 
 // ===================================================================
 
@@ -1721,6 +1723,348 @@ class IMQueryPushShieldRsp : public ::google::protobuf::MessageLite {
 
   void InitAsDefaultInstance();
   static IMQueryPushShieldRsp* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class IMRegistReq : public ::google::protobuf::MessageLite {
+ public:
+  IMRegistReq();
+  virtual ~IMRegistReq();
+
+  IMRegistReq(const IMRegistReq& from);
+
+  inline IMRegistReq& operator=(const IMRegistReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::std::string& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::std::string* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const IMRegistReq& default_instance();
+
+  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  // Returns the internal default instance pointer. This function can
+  // return NULL thus should not be used by the user. This is intended
+  // for Protobuf internal code. Please use default_instance() declared
+  // above instead.
+  static inline const IMRegistReq* internal_default_instance() {
+    return default_instance_;
+  }
+  #endif
+
+  void Swap(IMRegistReq* other);
+
+  // implements Message ----------------------------------------------
+
+  IMRegistReq* New() const;
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const IMRegistReq& from);
+  void MergeFrom(const IMRegistReq& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  void DiscardUnknownFields();
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  ::std::string GetTypeName() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required string user_name = 1;
+  inline bool has_user_name() const;
+  inline void clear_user_name();
+  static const int kUserNameFieldNumber = 1;
+  inline const ::std::string& user_name() const;
+  inline void set_user_name(const ::std::string& value);
+  inline void set_user_name(const char* value);
+  inline void set_user_name(const char* value, size_t size);
+  inline ::std::string* mutable_user_name();
+  inline ::std::string* release_user_name();
+  inline void set_allocated_user_name(::std::string* user_name);
+
+  // required string password = 2;
+  inline bool has_password() const;
+  inline void clear_password();
+  static const int kPasswordFieldNumber = 2;
+  inline const ::std::string& password() const;
+  inline void set_password(const ::std::string& value);
+  inline void set_password(const char* value);
+  inline void set_password(const char* value, size_t size);
+  inline ::std::string* mutable_password();
+  inline ::std::string* release_password();
+  inline void set_allocated_password(::std::string* password);
+
+  // optional uint32 sex = 3;
+  inline bool has_sex() const;
+  inline void clear_sex();
+  static const int kSexFieldNumber = 3;
+  inline ::google::protobuf::uint32 sex() const;
+  inline void set_sex(::google::protobuf::uint32 value);
+
+  // optional string nick = 4;
+  inline bool has_nick() const;
+  inline void clear_nick();
+  static const int kNickFieldNumber = 4;
+  inline const ::std::string& nick() const;
+  inline void set_nick(const ::std::string& value);
+  inline void set_nick(const char* value);
+  inline void set_nick(const char* value, size_t size);
+  inline ::std::string* mutable_nick();
+  inline ::std::string* release_nick();
+  inline void set_allocated_nick(::std::string* nick);
+
+  // optional string avatar = 5;
+  inline bool has_avatar() const;
+  inline void clear_avatar();
+  static const int kAvatarFieldNumber = 5;
+  inline const ::std::string& avatar() const;
+  inline void set_avatar(const ::std::string& value);
+  inline void set_avatar(const char* value);
+  inline void set_avatar(const char* value, size_t size);
+  inline ::std::string* mutable_avatar();
+  inline ::std::string* release_avatar();
+  inline void set_allocated_avatar(::std::string* avatar);
+
+  // optional string phone = 6;
+  inline bool has_phone() const;
+  inline void clear_phone();
+  static const int kPhoneFieldNumber = 6;
+  inline const ::std::string& phone() const;
+  inline void set_phone(const ::std::string& value);
+  inline void set_phone(const char* value);
+  inline void set_phone(const char* value, size_t size);
+  inline ::std::string* mutable_phone();
+  inline ::std::string* release_phone();
+  inline void set_allocated_phone(::std::string* phone);
+
+  // optional string email = 7;
+  inline bool has_email() const;
+  inline void clear_email();
+  static const int kEmailFieldNumber = 7;
+  inline const ::std::string& email() const;
+  inline void set_email(const ::std::string& value);
+  inline void set_email(const char* value);
+  inline void set_email(const char* value, size_t size);
+  inline ::std::string* mutable_email();
+  inline ::std::string* release_email();
+  inline void set_allocated_email(::std::string* email);
+
+  // optional bytes attach_data = 20;
+  inline bool has_attach_data() const;
+  inline void clear_attach_data();
+  static const int kAttachDataFieldNumber = 20;
+  inline const ::std::string& attach_data() const;
+  inline void set_attach_data(const ::std::string& value);
+  inline void set_attach_data(const char* value);
+  inline void set_attach_data(const void* value, size_t size);
+  inline ::std::string* mutable_attach_data();
+  inline ::std::string* release_attach_data();
+  inline void set_allocated_attach_data(::std::string* attach_data);
+
+  // @@protoc_insertion_point(class_scope:IM.Login.IMRegistReq)
+ private:
+  inline void set_has_user_name();
+  inline void clear_has_user_name();
+  inline void set_has_password();
+  inline void clear_has_password();
+  inline void set_has_sex();
+  inline void clear_has_sex();
+  inline void set_has_nick();
+  inline void clear_has_nick();
+  inline void set_has_avatar();
+  inline void clear_has_avatar();
+  inline void set_has_phone();
+  inline void clear_has_phone();
+  inline void set_has_email();
+  inline void clear_has_email();
+  inline void set_has_attach_data();
+  inline void clear_has_attach_data();
+
+  ::std::string _unknown_fields_;
+
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::std::string* user_name_;
+  ::std::string* password_;
+  ::std::string* nick_;
+  ::std::string* avatar_;
+  ::std::string* phone_;
+  ::std::string* email_;
+  ::std::string* attach_data_;
+  ::google::protobuf::uint32 sex_;
+  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void  protobuf_AddDesc_IM_2eLogin_2eproto_impl();
+  #else
+  friend void  protobuf_AddDesc_IM_2eLogin_2eproto();
+  #endif
+  friend void protobuf_AssignDesc_IM_2eLogin_2eproto();
+  friend void protobuf_ShutdownFile_IM_2eLogin_2eproto();
+
+  void InitAsDefaultInstance();
+  static IMRegistReq* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class IMRegistRes : public ::google::protobuf::MessageLite {
+ public:
+  IMRegistRes();
+  virtual ~IMRegistRes();
+
+  IMRegistRes(const IMRegistRes& from);
+
+  inline IMRegistRes& operator=(const IMRegistRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::std::string& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::std::string* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const IMRegistRes& default_instance();
+
+  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  // Returns the internal default instance pointer. This function can
+  // return NULL thus should not be used by the user. This is intended
+  // for Protobuf internal code. Please use default_instance() declared
+  // above instead.
+  static inline const IMRegistRes* internal_default_instance() {
+    return default_instance_;
+  }
+  #endif
+
+  void Swap(IMRegistRes* other);
+
+  // implements Message ----------------------------------------------
+
+  IMRegistRes* New() const;
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const IMRegistRes& from);
+  void MergeFrom(const IMRegistRes& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  void DiscardUnknownFields();
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  ::std::string GetTypeName() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required string user_name = 1;
+  inline bool has_user_name() const;
+  inline void clear_user_name();
+  static const int kUserNameFieldNumber = 1;
+  inline const ::std::string& user_name() const;
+  inline void set_user_name(const ::std::string& value);
+  inline void set_user_name(const char* value);
+  inline void set_user_name(const char* value, size_t size);
+  inline ::std::string* mutable_user_name();
+  inline ::std::string* release_user_name();
+  inline void set_allocated_user_name(::std::string* user_name);
+
+  // required .IM.BaseDefine.ResultType result_code = 2;
+  inline bool has_result_code() const;
+  inline void clear_result_code();
+  static const int kResultCodeFieldNumber = 2;
+  inline ::IM::BaseDefine::ResultType result_code() const;
+  inline void set_result_code(::IM::BaseDefine::ResultType value);
+
+  // optional string result_string = 3;
+  inline bool has_result_string() const;
+  inline void clear_result_string();
+  static const int kResultStringFieldNumber = 3;
+  inline const ::std::string& result_string() const;
+  inline void set_result_string(const ::std::string& value);
+  inline void set_result_string(const char* value);
+  inline void set_result_string(const char* value, size_t size);
+  inline ::std::string* mutable_result_string();
+  inline ::std::string* release_result_string();
+  inline void set_allocated_result_string(::std::string* result_string);
+
+  // optional uint32 user_id = 4;
+  inline bool has_user_id() const;
+  inline void clear_user_id();
+  static const int kUserIdFieldNumber = 4;
+  inline ::google::protobuf::uint32 user_id() const;
+  inline void set_user_id(::google::protobuf::uint32 value);
+
+  // optional bytes attach_data = 20;
+  inline bool has_attach_data() const;
+  inline void clear_attach_data();
+  static const int kAttachDataFieldNumber = 20;
+  inline const ::std::string& attach_data() const;
+  inline void set_attach_data(const ::std::string& value);
+  inline void set_attach_data(const char* value);
+  inline void set_attach_data(const void* value, size_t size);
+  inline ::std::string* mutable_attach_data();
+  inline ::std::string* release_attach_data();
+  inline void set_allocated_attach_data(::std::string* attach_data);
+
+  // @@protoc_insertion_point(class_scope:IM.Login.IMRegistRes)
+ private:
+  inline void set_has_user_name();
+  inline void clear_has_user_name();
+  inline void set_has_result_code();
+  inline void clear_has_result_code();
+  inline void set_has_result_string();
+  inline void clear_has_result_string();
+  inline void set_has_user_id();
+  inline void clear_has_user_id();
+  inline void set_has_attach_data();
+  inline void clear_has_attach_data();
+
+  ::std::string _unknown_fields_;
+
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::std::string* user_name_;
+  ::std::string* result_string_;
+  int result_code_;
+  ::google::protobuf::uint32 user_id_;
+  ::std::string* attach_data_;
+  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void  protobuf_AddDesc_IM_2eLogin_2eproto_impl();
+  #else
+  friend void  protobuf_AddDesc_IM_2eLogin_2eproto();
+  #endif
+  friend void protobuf_AssignDesc_IM_2eLogin_2eproto();
+  friend void protobuf_ShutdownFile_IM_2eLogin_2eproto();
+
+  void InitAsDefaultInstance();
+  static IMRegistRes* default_instance_;
 };
 // ===================================================================
 
@@ -3423,6 +3767,847 @@ inline void IMQueryPushShieldRsp::set_allocated_attach_data(::std::string* attac
     attach_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:IM.Login.IMQueryPushShieldRsp.attach_data)
+}
+
+// -------------------------------------------------------------------
+
+// IMRegistReq
+
+// required string user_name = 1;
+inline bool IMRegistReq::has_user_name() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void IMRegistReq::set_has_user_name() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void IMRegistReq::clear_has_user_name() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void IMRegistReq::clear_user_name() {
+  if (user_name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_->clear();
+  }
+  clear_has_user_name();
+}
+inline const ::std::string& IMRegistReq::user_name() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMRegistReq.user_name)
+  return *user_name_;
+}
+inline void IMRegistReq::set_user_name(const ::std::string& value) {
+  set_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_ = new ::std::string;
+  }
+  user_name_->assign(value);
+  // @@protoc_insertion_point(field_set:IM.Login.IMRegistReq.user_name)
+}
+inline void IMRegistReq::set_user_name(const char* value) {
+  set_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_ = new ::std::string;
+  }
+  user_name_->assign(value);
+  // @@protoc_insertion_point(field_set_char:IM.Login.IMRegistReq.user_name)
+}
+inline void IMRegistReq::set_user_name(const char* value, size_t size) {
+  set_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_ = new ::std::string;
+  }
+  user_name_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:IM.Login.IMRegistReq.user_name)
+}
+inline ::std::string* IMRegistReq::mutable_user_name() {
+  set_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:IM.Login.IMRegistReq.user_name)
+  return user_name_;
+}
+inline ::std::string* IMRegistReq::release_user_name() {
+  clear_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = user_name_;
+    user_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void IMRegistReq::set_allocated_user_name(::std::string* user_name) {
+  if (user_name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete user_name_;
+  }
+  if (user_name) {
+    set_has_user_name();
+    user_name_ = user_name;
+  } else {
+    clear_has_user_name();
+    user_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:IM.Login.IMRegistReq.user_name)
+}
+
+// required string password = 2;
+inline bool IMRegistReq::has_password() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void IMRegistReq::set_has_password() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void IMRegistReq::clear_has_password() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void IMRegistReq::clear_password() {
+  if (password_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_->clear();
+  }
+  clear_has_password();
+}
+inline const ::std::string& IMRegistReq::password() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMRegistReq.password)
+  return *password_;
+}
+inline void IMRegistReq::set_password(const ::std::string& value) {
+  set_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_ = new ::std::string;
+  }
+  password_->assign(value);
+  // @@protoc_insertion_point(field_set:IM.Login.IMRegistReq.password)
+}
+inline void IMRegistReq::set_password(const char* value) {
+  set_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_ = new ::std::string;
+  }
+  password_->assign(value);
+  // @@protoc_insertion_point(field_set_char:IM.Login.IMRegistReq.password)
+}
+inline void IMRegistReq::set_password(const char* value, size_t size) {
+  set_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_ = new ::std::string;
+  }
+  password_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:IM.Login.IMRegistReq.password)
+}
+inline ::std::string* IMRegistReq::mutable_password() {
+  set_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:IM.Login.IMRegistReq.password)
+  return password_;
+}
+inline ::std::string* IMRegistReq::release_password() {
+  clear_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = password_;
+    password_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void IMRegistReq::set_allocated_password(::std::string* password) {
+  if (password_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete password_;
+  }
+  if (password) {
+    set_has_password();
+    password_ = password;
+  } else {
+    clear_has_password();
+    password_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:IM.Login.IMRegistReq.password)
+}
+
+// optional uint32 sex = 3;
+inline bool IMRegistReq::has_sex() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void IMRegistReq::set_has_sex() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void IMRegistReq::clear_has_sex() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void IMRegistReq::clear_sex() {
+  sex_ = 0u;
+  clear_has_sex();
+}
+inline ::google::protobuf::uint32 IMRegistReq::sex() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMRegistReq.sex)
+  return sex_;
+}
+inline void IMRegistReq::set_sex(::google::protobuf::uint32 value) {
+  set_has_sex();
+  sex_ = value;
+  // @@protoc_insertion_point(field_set:IM.Login.IMRegistReq.sex)
+}
+
+// optional string nick = 4;
+inline bool IMRegistReq::has_nick() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void IMRegistReq::set_has_nick() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void IMRegistReq::clear_has_nick() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void IMRegistReq::clear_nick() {
+  if (nick_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    nick_->clear();
+  }
+  clear_has_nick();
+}
+inline const ::std::string& IMRegistReq::nick() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMRegistReq.nick)
+  return *nick_;
+}
+inline void IMRegistReq::set_nick(const ::std::string& value) {
+  set_has_nick();
+  if (nick_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    nick_ = new ::std::string;
+  }
+  nick_->assign(value);
+  // @@protoc_insertion_point(field_set:IM.Login.IMRegistReq.nick)
+}
+inline void IMRegistReq::set_nick(const char* value) {
+  set_has_nick();
+  if (nick_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    nick_ = new ::std::string;
+  }
+  nick_->assign(value);
+  // @@protoc_insertion_point(field_set_char:IM.Login.IMRegistReq.nick)
+}
+inline void IMRegistReq::set_nick(const char* value, size_t size) {
+  set_has_nick();
+  if (nick_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    nick_ = new ::std::string;
+  }
+  nick_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:IM.Login.IMRegistReq.nick)
+}
+inline ::std::string* IMRegistReq::mutable_nick() {
+  set_has_nick();
+  if (nick_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    nick_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:IM.Login.IMRegistReq.nick)
+  return nick_;
+}
+inline ::std::string* IMRegistReq::release_nick() {
+  clear_has_nick();
+  if (nick_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = nick_;
+    nick_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void IMRegistReq::set_allocated_nick(::std::string* nick) {
+  if (nick_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete nick_;
+  }
+  if (nick) {
+    set_has_nick();
+    nick_ = nick;
+  } else {
+    clear_has_nick();
+    nick_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:IM.Login.IMRegistReq.nick)
+}
+
+// optional string avatar = 5;
+inline bool IMRegistReq::has_avatar() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void IMRegistReq::set_has_avatar() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void IMRegistReq::clear_has_avatar() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void IMRegistReq::clear_avatar() {
+  if (avatar_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    avatar_->clear();
+  }
+  clear_has_avatar();
+}
+inline const ::std::string& IMRegistReq::avatar() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMRegistReq.avatar)
+  return *avatar_;
+}
+inline void IMRegistReq::set_avatar(const ::std::string& value) {
+  set_has_avatar();
+  if (avatar_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    avatar_ = new ::std::string;
+  }
+  avatar_->assign(value);
+  // @@protoc_insertion_point(field_set:IM.Login.IMRegistReq.avatar)
+}
+inline void IMRegistReq::set_avatar(const char* value) {
+  set_has_avatar();
+  if (avatar_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    avatar_ = new ::std::string;
+  }
+  avatar_->assign(value);
+  // @@protoc_insertion_point(field_set_char:IM.Login.IMRegistReq.avatar)
+}
+inline void IMRegistReq::set_avatar(const char* value, size_t size) {
+  set_has_avatar();
+  if (avatar_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    avatar_ = new ::std::string;
+  }
+  avatar_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:IM.Login.IMRegistReq.avatar)
+}
+inline ::std::string* IMRegistReq::mutable_avatar() {
+  set_has_avatar();
+  if (avatar_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    avatar_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:IM.Login.IMRegistReq.avatar)
+  return avatar_;
+}
+inline ::std::string* IMRegistReq::release_avatar() {
+  clear_has_avatar();
+  if (avatar_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = avatar_;
+    avatar_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void IMRegistReq::set_allocated_avatar(::std::string* avatar) {
+  if (avatar_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete avatar_;
+  }
+  if (avatar) {
+    set_has_avatar();
+    avatar_ = avatar;
+  } else {
+    clear_has_avatar();
+    avatar_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:IM.Login.IMRegistReq.avatar)
+}
+
+// optional string phone = 6;
+inline bool IMRegistReq::has_phone() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void IMRegistReq::set_has_phone() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void IMRegistReq::clear_has_phone() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void IMRegistReq::clear_phone() {
+  if (phone_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    phone_->clear();
+  }
+  clear_has_phone();
+}
+inline const ::std::string& IMRegistReq::phone() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMRegistReq.phone)
+  return *phone_;
+}
+inline void IMRegistReq::set_phone(const ::std::string& value) {
+  set_has_phone();
+  if (phone_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    phone_ = new ::std::string;
+  }
+  phone_->assign(value);
+  // @@protoc_insertion_point(field_set:IM.Login.IMRegistReq.phone)
+}
+inline void IMRegistReq::set_phone(const char* value) {
+  set_has_phone();
+  if (phone_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    phone_ = new ::std::string;
+  }
+  phone_->assign(value);
+  // @@protoc_insertion_point(field_set_char:IM.Login.IMRegistReq.phone)
+}
+inline void IMRegistReq::set_phone(const char* value, size_t size) {
+  set_has_phone();
+  if (phone_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    phone_ = new ::std::string;
+  }
+  phone_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:IM.Login.IMRegistReq.phone)
+}
+inline ::std::string* IMRegistReq::mutable_phone() {
+  set_has_phone();
+  if (phone_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    phone_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:IM.Login.IMRegistReq.phone)
+  return phone_;
+}
+inline ::std::string* IMRegistReq::release_phone() {
+  clear_has_phone();
+  if (phone_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = phone_;
+    phone_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void IMRegistReq::set_allocated_phone(::std::string* phone) {
+  if (phone_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete phone_;
+  }
+  if (phone) {
+    set_has_phone();
+    phone_ = phone;
+  } else {
+    clear_has_phone();
+    phone_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:IM.Login.IMRegistReq.phone)
+}
+
+// optional string email = 7;
+inline bool IMRegistReq::has_email() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void IMRegistReq::set_has_email() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void IMRegistReq::clear_has_email() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void IMRegistReq::clear_email() {
+  if (email_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    email_->clear();
+  }
+  clear_has_email();
+}
+inline const ::std::string& IMRegistReq::email() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMRegistReq.email)
+  return *email_;
+}
+inline void IMRegistReq::set_email(const ::std::string& value) {
+  set_has_email();
+  if (email_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    email_ = new ::std::string;
+  }
+  email_->assign(value);
+  // @@protoc_insertion_point(field_set:IM.Login.IMRegistReq.email)
+}
+inline void IMRegistReq::set_email(const char* value) {
+  set_has_email();
+  if (email_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    email_ = new ::std::string;
+  }
+  email_->assign(value);
+  // @@protoc_insertion_point(field_set_char:IM.Login.IMRegistReq.email)
+}
+inline void IMRegistReq::set_email(const char* value, size_t size) {
+  set_has_email();
+  if (email_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    email_ = new ::std::string;
+  }
+  email_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:IM.Login.IMRegistReq.email)
+}
+inline ::std::string* IMRegistReq::mutable_email() {
+  set_has_email();
+  if (email_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    email_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:IM.Login.IMRegistReq.email)
+  return email_;
+}
+inline ::std::string* IMRegistReq::release_email() {
+  clear_has_email();
+  if (email_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = email_;
+    email_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void IMRegistReq::set_allocated_email(::std::string* email) {
+  if (email_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete email_;
+  }
+  if (email) {
+    set_has_email();
+    email_ = email;
+  } else {
+    clear_has_email();
+    email_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:IM.Login.IMRegistReq.email)
+}
+
+// optional bytes attach_data = 20;
+inline bool IMRegistReq::has_attach_data() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void IMRegistReq::set_has_attach_data() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void IMRegistReq::clear_has_attach_data() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void IMRegistReq::clear_attach_data() {
+  if (attach_data_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_->clear();
+  }
+  clear_has_attach_data();
+}
+inline const ::std::string& IMRegistReq::attach_data() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMRegistReq.attach_data)
+  return *attach_data_;
+}
+inline void IMRegistReq::set_attach_data(const ::std::string& value) {
+  set_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_ = new ::std::string;
+  }
+  attach_data_->assign(value);
+  // @@protoc_insertion_point(field_set:IM.Login.IMRegistReq.attach_data)
+}
+inline void IMRegistReq::set_attach_data(const char* value) {
+  set_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_ = new ::std::string;
+  }
+  attach_data_->assign(value);
+  // @@protoc_insertion_point(field_set_char:IM.Login.IMRegistReq.attach_data)
+}
+inline void IMRegistReq::set_attach_data(const void* value, size_t size) {
+  set_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_ = new ::std::string;
+  }
+  attach_data_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:IM.Login.IMRegistReq.attach_data)
+}
+inline ::std::string* IMRegistReq::mutable_attach_data() {
+  set_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:IM.Login.IMRegistReq.attach_data)
+  return attach_data_;
+}
+inline ::std::string* IMRegistReq::release_attach_data() {
+  clear_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = attach_data_;
+    attach_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void IMRegistReq::set_allocated_attach_data(::std::string* attach_data) {
+  if (attach_data_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete attach_data_;
+  }
+  if (attach_data) {
+    set_has_attach_data();
+    attach_data_ = attach_data;
+  } else {
+    clear_has_attach_data();
+    attach_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:IM.Login.IMRegistReq.attach_data)
+}
+
+// -------------------------------------------------------------------
+
+// IMRegistRes
+
+// required string user_name = 1;
+inline bool IMRegistRes::has_user_name() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void IMRegistRes::set_has_user_name() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void IMRegistRes::clear_has_user_name() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void IMRegistRes::clear_user_name() {
+  if (user_name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_->clear();
+  }
+  clear_has_user_name();
+}
+inline const ::std::string& IMRegistRes::user_name() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMRegistRes.user_name)
+  return *user_name_;
+}
+inline void IMRegistRes::set_user_name(const ::std::string& value) {
+  set_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_ = new ::std::string;
+  }
+  user_name_->assign(value);
+  // @@protoc_insertion_point(field_set:IM.Login.IMRegistRes.user_name)
+}
+inline void IMRegistRes::set_user_name(const char* value) {
+  set_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_ = new ::std::string;
+  }
+  user_name_->assign(value);
+  // @@protoc_insertion_point(field_set_char:IM.Login.IMRegistRes.user_name)
+}
+inline void IMRegistRes::set_user_name(const char* value, size_t size) {
+  set_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_ = new ::std::string;
+  }
+  user_name_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:IM.Login.IMRegistRes.user_name)
+}
+inline ::std::string* IMRegistRes::mutable_user_name() {
+  set_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    user_name_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:IM.Login.IMRegistRes.user_name)
+  return user_name_;
+}
+inline ::std::string* IMRegistRes::release_user_name() {
+  clear_has_user_name();
+  if (user_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = user_name_;
+    user_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void IMRegistRes::set_allocated_user_name(::std::string* user_name) {
+  if (user_name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete user_name_;
+  }
+  if (user_name) {
+    set_has_user_name();
+    user_name_ = user_name;
+  } else {
+    clear_has_user_name();
+    user_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:IM.Login.IMRegistRes.user_name)
+}
+
+// required .IM.BaseDefine.ResultType result_code = 2;
+inline bool IMRegistRes::has_result_code() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void IMRegistRes::set_has_result_code() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void IMRegistRes::clear_has_result_code() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void IMRegistRes::clear_result_code() {
+  result_code_ = 0;
+  clear_has_result_code();
+}
+inline ::IM::BaseDefine::ResultType IMRegistRes::result_code() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMRegistRes.result_code)
+  return static_cast< ::IM::BaseDefine::ResultType >(result_code_);
+}
+inline void IMRegistRes::set_result_code(::IM::BaseDefine::ResultType value) {
+  assert(::IM::BaseDefine::ResultType_IsValid(value));
+  set_has_result_code();
+  result_code_ = value;
+  // @@protoc_insertion_point(field_set:IM.Login.IMRegistRes.result_code)
+}
+
+// optional string result_string = 3;
+inline bool IMRegistRes::has_result_string() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void IMRegistRes::set_has_result_string() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void IMRegistRes::clear_has_result_string() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void IMRegistRes::clear_result_string() {
+  if (result_string_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    result_string_->clear();
+  }
+  clear_has_result_string();
+}
+inline const ::std::string& IMRegistRes::result_string() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMRegistRes.result_string)
+  return *result_string_;
+}
+inline void IMRegistRes::set_result_string(const ::std::string& value) {
+  set_has_result_string();
+  if (result_string_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    result_string_ = new ::std::string;
+  }
+  result_string_->assign(value);
+  // @@protoc_insertion_point(field_set:IM.Login.IMRegistRes.result_string)
+}
+inline void IMRegistRes::set_result_string(const char* value) {
+  set_has_result_string();
+  if (result_string_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    result_string_ = new ::std::string;
+  }
+  result_string_->assign(value);
+  // @@protoc_insertion_point(field_set_char:IM.Login.IMRegistRes.result_string)
+}
+inline void IMRegistRes::set_result_string(const char* value, size_t size) {
+  set_has_result_string();
+  if (result_string_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    result_string_ = new ::std::string;
+  }
+  result_string_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:IM.Login.IMRegistRes.result_string)
+}
+inline ::std::string* IMRegistRes::mutable_result_string() {
+  set_has_result_string();
+  if (result_string_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    result_string_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:IM.Login.IMRegistRes.result_string)
+  return result_string_;
+}
+inline ::std::string* IMRegistRes::release_result_string() {
+  clear_has_result_string();
+  if (result_string_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = result_string_;
+    result_string_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void IMRegistRes::set_allocated_result_string(::std::string* result_string) {
+  if (result_string_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete result_string_;
+  }
+  if (result_string) {
+    set_has_result_string();
+    result_string_ = result_string;
+  } else {
+    clear_has_result_string();
+    result_string_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:IM.Login.IMRegistRes.result_string)
+}
+
+// optional uint32 user_id = 4;
+inline bool IMRegistRes::has_user_id() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void IMRegistRes::set_has_user_id() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void IMRegistRes::clear_has_user_id() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void IMRegistRes::clear_user_id() {
+  user_id_ = 0u;
+  clear_has_user_id();
+}
+inline ::google::protobuf::uint32 IMRegistRes::user_id() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMRegistRes.user_id)
+  return user_id_;
+}
+inline void IMRegistRes::set_user_id(::google::protobuf::uint32 value) {
+  set_has_user_id();
+  user_id_ = value;
+  // @@protoc_insertion_point(field_set:IM.Login.IMRegistRes.user_id)
+}
+
+// optional bytes attach_data = 20;
+inline bool IMRegistRes::has_attach_data() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void IMRegistRes::set_has_attach_data() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void IMRegistRes::clear_has_attach_data() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void IMRegistRes::clear_attach_data() {
+  if (attach_data_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_->clear();
+  }
+  clear_has_attach_data();
+}
+inline const ::std::string& IMRegistRes::attach_data() const {
+  // @@protoc_insertion_point(field_get:IM.Login.IMRegistRes.attach_data)
+  return *attach_data_;
+}
+inline void IMRegistRes::set_attach_data(const ::std::string& value) {
+  set_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_ = new ::std::string;
+  }
+  attach_data_->assign(value);
+  // @@protoc_insertion_point(field_set:IM.Login.IMRegistRes.attach_data)
+}
+inline void IMRegistRes::set_attach_data(const char* value) {
+  set_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_ = new ::std::string;
+  }
+  attach_data_->assign(value);
+  // @@protoc_insertion_point(field_set_char:IM.Login.IMRegistRes.attach_data)
+}
+inline void IMRegistRes::set_attach_data(const void* value, size_t size) {
+  set_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_ = new ::std::string;
+  }
+  attach_data_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:IM.Login.IMRegistRes.attach_data)
+}
+inline ::std::string* IMRegistRes::mutable_attach_data() {
+  set_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    attach_data_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:IM.Login.IMRegistRes.attach_data)
+  return attach_data_;
+}
+inline ::std::string* IMRegistRes::release_attach_data() {
+  clear_has_attach_data();
+  if (attach_data_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = attach_data_;
+    attach_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void IMRegistRes::set_allocated_attach_data(::std::string* attach_data) {
+  if (attach_data_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete attach_data_;
+  }
+  if (attach_data) {
+    set_has_attach_data();
+    attach_data_ = attach_data;
+  } else {
+    clear_has_attach_data();
+    attach_data_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:IM.Login.IMRegistRes.attach_data)
 }
 
 
